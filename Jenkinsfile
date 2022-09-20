@@ -23,7 +23,6 @@ node() {
             }
         } 
     } finally {
-        checkout scm
         archiveArtifacts 'dist/add2vals'
     }
 }
