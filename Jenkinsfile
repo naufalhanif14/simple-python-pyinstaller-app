@@ -23,6 +23,6 @@ node() {
             }
         } 
     } finally {
-        'dist/add2vals'
+        archiveArtifacts 'dist/add2vals'
     }
 }
