@@ -10,7 +10,7 @@ node() {
             docker.image('qnib/pytest').inside {
                 checkout scm
                 sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
-                junit 'test-reports/results.xml'
+                sh junit 'test-reports/results.xml'
             } 
         }
     // } finally {
@@ -21,7 +21,7 @@ node() {
             docker.image('cdrx/pyinstaller-linux:python2').inside {
                 checkout scm
                 sh 'pyinstaller --onefile sources/add2vals.py'
-                archiveArtifacts 'dist/add2vals'
+                sh archiveArtifacts 'dist/add2vals'
             }
         } 
     // } finally {
