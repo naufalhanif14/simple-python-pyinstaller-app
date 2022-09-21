@@ -22,7 +22,7 @@ node() {
                 checkout scm
                 sh 'pyinstaller --onefile sources/add2vals.py'
             }
-            archiveArtifacts 'sources/dist/add2vals'
+            archiveArtifacts 'dist/add2vals'
         } 
     // } finally {
     //     archiveArtifacts 'sources/dist/add2vals'
