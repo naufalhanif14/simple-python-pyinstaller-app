@@ -24,6 +24,6 @@ node() {
         } 
     } finally {
         archiveArtifacts '/sources/dist/add2vals'
-        // sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
     }
 }
