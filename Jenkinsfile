@@ -25,5 +25,6 @@ node() {
         } 
     } catch(Exception e) {
         //archiveArtifacts 'dist/add2vals'
+        echo 'Failed'
     }
 }
