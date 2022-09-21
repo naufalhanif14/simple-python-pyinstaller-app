@@ -23,8 +23,8 @@ node() {
                 archiveArtifacts 'dist/add2vals'
             }
         } 
-    } catch(Exception e) {
-        //archiveArtifacts 'dist/add2vals'
-        echo 'Failed'
     }
+    // finally {
+    //     archiveArtifacts 'dist/add2vals'
+    // }
 }
