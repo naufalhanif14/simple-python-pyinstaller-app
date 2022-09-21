@@ -15,17 +15,15 @@ node() {
     } finally {
         junit 'test-reports/results.xml'
     }
-    // try {
+    try {
         stage('Deliver') {
             docker.image('cdrx/pyinstaller-linux:python2').inside {
                 checkout scm
                 sh 'pyinstaller --onefile sources/add2vals.py'
-                archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
-                // sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
             }
         } 
-    // } finally {
-    //     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
-    //     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
-    // }
+    } finally {
+        archiveArtifacts 'sources/dist/add2vals'
+        // sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+    }
 }
