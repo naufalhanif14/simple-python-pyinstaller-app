@@ -17,10 +17,10 @@ node() {
     }
     try {
         stage('Deliver') {
-            docker.image('cdrx/pyinstaller-linux:python2').inside {
-                checkout scm
-                sh 'pyinstaller --onefile sources/add2vals.py'
-            }
+            // docker.image('cdrx/pyinstaller-linux:python2').inside {
+            //     checkout scm
+            //     sh 'pyinstaller --onefile sources/add2vals.py'
+            // }
             withEnv(['VOLUME=$(pwd)/sources:/src',
             'IMAGE=cdrx/pyinstaller-linux:python2']) {
                 // dir(path: env.BUILD_ID) {
