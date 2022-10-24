@@ -19,7 +19,7 @@ node() {
         'IMAGE=cdrx/pyinstaller-linux:python2']) {
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
             archiveArtifacts 'sources/dist/add2vals'
-            sh "scp -i /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/EC2-DevOps-Key-Pair.pem /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/sources/dist/add2vals  ec2-user@54.255.247.240:/home/ec2-user/build"
+            sh "printf 'yes' | scp -i /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/EC2-DevOps-Key-Pair.pem /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/sources/dist/add2vals  ec2-user@54.255.247.240:/home/ec2-user/build"
 	        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
         }
     } 
