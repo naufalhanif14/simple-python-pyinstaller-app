@@ -18,18 +18,14 @@ node() {
         input message: "Lanjutkan ke tahap Deploy?", ok: "Proceed"
     }
     stage('Deploy') {
-        deploy()
-    }
-}
-
-def deploy() {
-    withEnv(['VOLUME=$(pwd)/sources:/src',
-    'IMAGE=cdrx/pyinstaller-linux:python2']) {
-        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
-        archiveArtifacts 'sources/dist/add2vals'
-        sh "ssh-keyscan -H 54.169.250.227 >> ~/.ssh/known_hosts"
-        sh "scp -i /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/EC2-DevOps-Key-Pair.pem /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/sources/dist/add2vals  ec2-user@54.169.250.227:/home/ec2-user/build"
-	    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
-    }
-    sleep(60)
+        withEnv(['VOLUME=$(pwd)/sources:/src',
+        'IMAGE=cdrx/pyinstaller-linux:python2']) {
+            sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
+            archiveArtifacts 'sources/dist/add2vals'
+            sh "ssh-keyscan -H 54.169.250.227 >> ~/.ssh/known_hosts"
+            sh "scp -i /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/EC2-DevOps-Key-Pair.pem /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/sources/dist/add2vals  ec2-user@54.169.250.227:/home/ec2-user/build"
+	        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+            sleep(60)
+        }
+    } 
 }
