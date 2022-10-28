@@ -24,7 +24,7 @@ node() {
             archiveArtifacts 'sources/dist/add2vals'
             sh "ssh-keyscan -H 54.169.250.227 >> ~/.ssh/known_hosts"
             sh "scp -i /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/EC2-DevOps-Key-Pair.pem /var/jenkins_home/workspace/submission-cicd-pipeline-naufalhanif1477/sources/dist/add2vals  ec2-user@54.169.250.227:/home/ec2-user/build"
-	        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+	    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
             sleep 60
         }
     } 
